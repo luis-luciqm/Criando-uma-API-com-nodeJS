@@ -6,3 +6,6 @@ npm install express
 
 # instalar o modulo para reiniciar o servidor sempre que houver alteração no codigo fonte
 npm install -D nodemon
+
+# instalar a dependencia MongoDB
+npm install --save mongodb
