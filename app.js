@@ -82,9 +82,9 @@ app.put("/artigo/:id", (req, res) => {
 
 })
 
-app.delete("/artigo/:id", (req,res) => {
+app.delete("/artigo/:id", (req,res) => { // rota do tipo delete em insomnia
     // irá deletar apenas um 
-    const artigo = Artigo.deleteOne({_id: req.params.id}, req.body, (err) => {
+    const artigo = Artigo.deleteOne({_id: req.params.id}, (err) => {
         if(err) return res.status(400).json({
             error: true,
             message: "Não foi possível excluir artigo"
