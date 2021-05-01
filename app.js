@@ -26,7 +26,7 @@ app.get("/", (req, res) => { // Array function
     Artigo.find({}).then((artigo) =>{ // caso consiga retornar com sucesso os artigos
         return res.json(artigo) // retornando os artigos
     }).catch((erro) => {
-        return res.status(400).json({
+        return res.status(400).json({ // se caso não encontre nenhum artigo, ou encontre algum erro
             error: true,
             message: "Nenhum artigo encontrado!\n Codigo do erro: " + erro
         })
