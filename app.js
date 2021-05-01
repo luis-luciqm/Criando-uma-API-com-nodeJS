@@ -63,6 +63,39 @@ app.post("/artigo", (req,res) => { // criar rota em insomnia
     }) 
 })
 
+// editando dados com PUT
+app.put("/artigo/:id", (req, res) => {
+    // artigo pega a models artigo e realiza o update, indica que quer editar quando o id === id do parametro
+    // req.params.id é o id que veio pelo parametro
+    const artigo = Artigo.updateOne({_id: req.params.id}, req.body, (err) => { // caso tenha um erro
+        if(err) return res.status(400).json({
+            error: true,
+            message: "Artigo não foi editado"
+        })
+        // se não houver nenhum erro
+        return res.json({
+            error: false,
+            message: "Artigo editado com sucesso"
+        })
+        // não precisa especificar o status(200), se funcionar o status é 200
+    })
+
+})
+
+app.delete("/artigo/:id", (req,res) => {
+    // irá deletar apenas um 
+    const artigo = Artigo.deleteOne({_id: req.params.id}, req.body, (err) => {
+        if(err) return res.status(400).json({
+            error: true,
+            message: "Não foi possível excluir artigo"
+        })
+        return res.json({
+            error: false,
+            message: "Artigo foi editado com sucesso"
+        })
+    })
+})
+
 app.listen(8080, (req, res) => {
     console.log("Server is running port 8080")
 })
