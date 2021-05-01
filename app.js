@@ -20,16 +20,17 @@ mongoose.connect('mongodb://localhost/luisdb', { // realizando a conexão com o 
 
 app.get("/", (req, res) => { // Array function
     // res.send("Iniciando API com nodeJS")
-    // return res.json({
-    //     titulo: "Como criar uma API" // retornando um objeto de dados
-    // })
 
     // Listar na API
-    // Artigo.find({}) = procurar todos os arquivos
-    Artigo.find({}).then((artigo) =>{
+    // Artigo.find({}) === procurar todos os arquivos
+    Artigo.find({}).then((artigo) =>{ // caso consiga retornar com sucesso os artigos
         return res.json(artigo) // retornando os artigos
-    }) // caso consiga retornar com sucesso os artigos
-
+    }).catch((erro) => {
+        return res.status(400).json({
+            error: true,
+            message: "Nenhum artigo encontrado!\n Codigo do erro: " + erro
+        })
+    })
 })
 
 app.post("/artigo", (req,res) => { // criar rota em insomnia
