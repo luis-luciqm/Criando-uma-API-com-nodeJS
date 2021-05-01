@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
 
+app.use(express.json()) // permissão de acesso para usar o JSON
+
 app.get("/", (req, res) => { // Array function
     // res.send("Iniciando API com nodeJS")
     return res.json({
