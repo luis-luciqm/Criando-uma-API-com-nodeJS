@@ -9,3 +9,6 @@ npm install -D nodemon
 
 # instalar a dependencia MongoDB
 npm install --save mongodb
+
+# instalar Mongoose, traduz os dados para objetos Javascript para que possam ser utilizados por sua aplicação
+npm install --save mongoose
