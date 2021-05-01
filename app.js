@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose') // incluindo mongoose
 
 require("./models/Artigo") // incluiindo arquivo
-const Artigo = mongoose.model('artigo')
+const Artigo = mongoose.model('artigo') // const Artigo recebe o models Artigos
 
 const app = express()
 
@@ -20,18 +20,25 @@ mongoose.connect('mongodb://localhost/luisdb', { // realizando a conexão com o 
 
 app.get("/", (req, res) => { // Array function
     // res.send("Iniciando API com nodeJS")
-    return res.json({
-        titulo: "Como criar uma API" // retornando um objeto de dados
-    })
+    // return res.json({
+    //     titulo: "Como criar uma API" // retornando um objeto de dados
+    // })
+
+    // Listar na API
+    // Artigo.find({}) = procurar todos os arquivos
+    Artigo.find({}).then((artigo) =>{
+        return res.json(artigo) // retornando os artigos
+    }) // caso consiga retornar com sucesso os artigos
+
 })
 
 app.post("/artigo", (req,res) => { // criar rota em insomnia
     // console.log(req.body)
     // return res.json(req.body)
-    const artigo = Artigo.create(req.body, (err) => { // salvando no bancio de dados
+    const artigo = Artigo.create(req.body, (err) => { // salvando no banco de dados
         if(err) return res.status(400).json({ // retornando erro 404
             error: true,
-            message: "Erro: O artigo não foi cadastrado com sucesso"
+            message: "Erro: O artigo não foi cadastrado"
         })
         // se não houver nenhum erro
         return res.status(200).json({
