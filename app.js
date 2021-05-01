@@ -26,8 +26,19 @@ app.get("/", (req, res) => { // Array function
 })
 
 app.post("/artigo", (req,res) => { // criar rota em insomnia
-    console.log(req.body)
-    return res.json(req.body)
+    // console.log(req.body)
+    // return res.json(req.body)
+    const artigo = Artigo.create(req.body, (err) => { // salvando no bancio de dados
+        if(err) return res.status(400).json({ // retornando erro 404
+            error: true,
+            message: "Erro: O artigo não foi cadastrado com sucesso"
+        })
+        // se não houver nenhum erro
+        return res.status(200).json({
+            error: false,
+            message: "O artigo foi cadastrado com sucesso"
+        }) 
+    }) 
 })
 
 app.listen(8080, (req, res) => {
