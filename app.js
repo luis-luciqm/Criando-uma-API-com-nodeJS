@@ -33,6 +33,20 @@ app.get("/", (req, res) => { // Array function
     })
 })
 
+// visualizar artigo de acordo com o id passado pelo parametro
+app.get("/artigo/:id", (req,res) => {
+    // console.log(req.params.id)
+    Artigo.findOne({_id: req.params.id}).then((artigo) => { // pego a const artigo, busco um artigo com FindOne.
+                                                            // ({condição: quando a posição id == req.params.id})
+        return res.json(artigo) //  com o then() retorno o artigo encontrado
+    }).catch((erro) => { // se não econtrar
+        return res.status(400).json({ // retorno o status de erro 400
+            error: true,
+            message: "Nenhum artigo foi encontrado"
+        })
+    })
+})
+
 app.post("/artigo", (req,res) => { // criar rota em insomnia
     // console.log(req.body)
     // return res.json(req.body)
