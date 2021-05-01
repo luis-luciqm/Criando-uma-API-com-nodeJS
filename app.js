@@ -26,7 +26,8 @@ app.get("/", (req, res) => { // Array function
 })
 
 app.post("/artigo", (req,res) => { // criar rota em insomnia
-
+    console.log(req.body)
+    return res.json(req.body)
 })
 
 app.listen(8080, (req, res) => {
